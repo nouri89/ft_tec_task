@@ -77,77 +77,52 @@ function searchHeader() {
 
 function revealSearchResults(data, word) {
 	let searchRes = document.getElementById("searchResultDiv");
-	console.log(word.toLowerCase());
 
-	//============================================
-	/*
-	results.forEach((element, index) => {
-		if (
-			element.titel.titel
-				.toLowerCase()
-				.search(searchWord.value.toLowerCase()) >= 0 ||
-			element.summary.excerpt
-				.toLowerCase()
-				.search(searchWord.value.toLowerCase()) >= 0
-		) {
-			console.log("searchfound");
-			//searchFoundCounter++;
-			//episodeFound.push(allEpisodes[index]);
-		}
-	});
-	if (episodeFound.length === 0) {
-		currentEpisodeHeader.innerHTML = "No result found";
-	}
-	console.log(episodeFound.length + " all Episodes length");
-	searchResult.innerHTML =
-		"Displaying " +
-		searchFoundCounter +
-		" / " +
-		totalNumberOfEpisodes +
-		" episodes ";
-*/
 	//================================
-	let singleResultDiv = document.createElement("div");
+	//let singleResultDiv = document.createElement("div");
 
 	//come back here
-	let searchFoundCounter = 0;
 
+	//console.log(data[0].summary.excerpt);
+	const articlesFound = data.filter((element) => {
+		if (
+			element.title.title.toLowerCase().includes(word.toLowerCase())
 
-
-	console.log(data[0].summary.excerpt);
-	let articlesFound = data.filter((element, index) => {
-		return element.title.title.toLowerCase().includes(word.toLowerCase());
-
+			////element.summary.excerpt.toLowerCase().includes(word.toLowerCase())
+		)
+			return true;
 	});
 	console.log(articlesFound.length);
 
-	/*
+	articlesFound.forEach((element, index) => {
+		let singleResultDiv = document.createElement("div");
+		singleResultDiv.setAttribute("id", "singleResultDiv");
+		singleResultDiv.style.border = "10px solid grey";
+		let resultImg = document.createElement("img");
+		resultImg.setAttribute("src", element.images[0].url);
+		resultImg.style.float = "left";
+		singleResultDiv.appendChild(resultImg);
 
+		let resultheader = document.createElement("h4");
+		resultheader.innerText = element.title.title;
+		singleResultDiv.appendChild(resultheader);
 
-	singleResultDiv.setAttribute("id", "singleResultDiv");
-	searchRes.style.border = "thick solid grey";
+		let resultSummary = document.createElement("p");
+		resultSummary.innerText = element.summary.excerpt;
+		singleResultDiv.appendChild(resultSummary);
 
-	let resultImg = document.createElement("img");
-	resultImg.setAttribute("src", data[1].images[0].url);
-	resultImg.style.float = "left";
-	singleResultDiv.appendChild(resultImg);
+		let articleDate = document.createElement("h6");
+		articleDate.innerText = element.lifecycle.initialPublishDateTime
+			.toString()
+			.slice(0, 10);
+		singleResultDiv.appendChild(articleDate);
+		searchRes.appendChild(singleResultDiv);
 
-	let resultheader = document.createElement("h4");
-	resultheader.innerText = data[1].title.title;
-	singleResultDiv.appendChild(resultheader);
+		let lineBraker = document.createElement("hr");
 
-	let resultSummary = document.createElement("p");
-	resultSummary.innerText = data[1].summary.excerpt;
-	singleResultDiv.appendChild(resultSummary);
-
-	let articleDate = document.createElement("h6");
-	articleDate.innerText = data[1].lifecycle.initialPublishDateTime
-		.toString()
-		.slice(0, 10);
-	singleResultDiv.appendChild(articleDate);
-
-	searchRes.appendChild(singleResultDiv);*/
-	
+		singleResultDiv.appendChild(lineBraker);
+	});
+	//	searchRes.appendChild(singleResultDiv);
 
 	//================================================
 }
