@@ -97,11 +97,13 @@ function revealSearchResults(data, word) {
 	articlesFound.forEach((element, index) => {
 		let singleResultDiv = document.createElement("div");
 		singleResultDiv.setAttribute("id", "singleResultDiv");
-	
-		let resultImg = document.createElement("img");
-		resultImg.setAttribute("src", element.images[0].url);
-		resultImg.style.float = "left";
-		singleResultDiv.appendChild(resultImg);
+
+		if (element.images[0] !== undefined) {
+			let resultImg = document.createElement("img");
+			resultImg.setAttribute("src", element.images[0].url);
+			resultImg.style.float = "left";
+			singleResultDiv.appendChild(resultImg);
+		}
 
 		let resultheader = document.createElement("h4");
 		resultheader.innerText = element.title.title;

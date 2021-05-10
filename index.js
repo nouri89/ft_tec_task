@@ -15,6 +15,7 @@ app.get("/getData", (req, res) => {
 // location.uri  for headlines url
 
 app.get("/getCall", (req, res) => {});
+
 const getHeadlines = async () => {
 	try {
 		const data = {
