@@ -1,51 +1,124 @@
 let searchPanelFlag = false;
-let searchArticle = document.getElementById("articles");
-searchArticle.style.display = "flex";
-searchArticle.style.flexDirection = "column";
 
 async function fetchData() {
 	const response = await fetch("http://localhost:3004/getData");
-	const results = await response.json();
-	console.log(results);
-
-	results.forEach((element, index) => {
-		//	console.log(element.title.title);
-		//	console.log(element.summary.excerpt);
+	const result = await response.json();
+	const results = result.filter((element) => {
+		return typeof element.images[0] === "object";
 	});
 
-	//revealSearchResults(results);
+	let mainPage = document.getElementById("articles");
 
+	let mainDiv = document.createElement("div");
+	mainDiv.style.display = "flex";
+	mainDiv.style.marginTop = "2%";
+	//mainDiv.style.flexDirection = "row";
+
+	mainPage.appendChild(mainDiv);
+	let mainArticle = document.createElement("h1");
+	mainArticle.style.fontFamily = "Times New Roman, Times, serif";
+	mainDiv.appendChild(mainArticle);
+
+	mainArticle.innerText = results[0].title.title;
+
+	let mainArticleSummary = document.createElement("p");
+	mainArticleSummary.style.margin = "5% 5% 1% 1%";
+	mainDiv.appendChild(mainArticleSummary);
+	mainArticleSummary.innerText = results[0].summary.excerpt;
+
+	let mainArticleImg = document.createElement("img");
+	mainDiv.appendChild(mainArticleImg);
+	mainArticleImg.width = "200";
+	mainArticleImg.height = "200";
+	mainArticleImg.style.float = "right";
+	mainArticleImg.setAttribute("src", results[0].images[0].url);
+
+	let secondDiv = document.createElement("div");
+	secondDiv.setAttribute("class", "row");
+	mainPage.appendChild(secondDiv);
+	//col-md-2 rounded
+	for (let i = 1; i < 5; i++) {
+		let HorisontalDiv = document.createElement("div");
+		HorisontalDiv.setAttribute("class", "col-md-2 rounded ");
+		secondDiv.appendChild(HorisontalDiv);
+		let hrArticle = document.createElement("h6");
+		HorisontalDiv.appendChild(hrArticle);
+		hrArticle.innerText = results[i].title.title;
+
+		let hrArticleSummary = document.createElement("p");
+		HorisontalDiv.appendChild(hrArticleSummary);
+		mainArticleSummary.innerText = results[i].summary.excerpt;
+
+		let hrArticleImg = document.createElement("img");
+		HorisontalDiv.appendChild(hrArticleImg);
+		mainArticleImg.width = "250";
+
+		mainArticleImg.height = "200";
+		mainArticleImg.style.float = "right";
+		hrArticleImg.setAttribute("src", results[i].images[0].url);
+	}
+
+	for (let j = 5; j < results.length; j++) {
+		let HorisontalDiv = document.createElement("div");
+		HorisontalDiv.setAttribute("class", "col-md-4 rounded ");
+		secondDiv.appendChild(HorisontalDiv);
+		let hrArticle = document.createElement("h6");
+		HorisontalDiv.appendChild(hrArticle);
+		hrArticle.innerText = results[j].title.title;
+
+		let hrArticleSummary = document.createElement("p");
+		HorisontalDiv.appendChild(hrArticleSummary);
+		mainArticleSummary.innerText = results[j].summary.excerpt;
+
+		let hrArticleImg = document.createElement("img");
+		HorisontalDiv.appendChild(hrArticleImg);
+		console.log(typeof results[j].images[0]);
+
+		if (typeof results[j].images[0] === undefined) {
+			hrArticleImg.setAttribute(
+				"src",
+				"www.thermaxglobal.com/articles/chiller-for-a-packaging-manufacturer/image-not-found"
+			);
+		} else if (typeof results[j].images[0] !== undefined) {
+			hrArticleImg.setAttribute("src", results[j].images[0].url);
+		}
+	}
+	document
+		.getElementById("closeSearchPanel")
+		.addEventListener("click", function () {
+			document.getElementById("searchPanel").style.display = "none";
+		});
 	document.getElementById("searchIcon").addEventListener("click", function () {
 		if (searchPanelFlag) {
 			document.getElementById("searchPanel").style.display = "none";
 			searchPanelFlag = false;
 		} else {
 			document.getElementById("searchPanel").style.display = "flex";
+
 			searchPanelFlag = true;
 		}
-
-		//console.log(document.querySelector("#searchHeadline").value);
 	});
-	//	let searchedWord = document.querySelector("#searchWord").value;
+
 	document
 		.getElementById("searchButton")
 		.addEventListener("click", function () {
 			//hide the main searchpanel
 			document.getElementById("searchPanel").style.display = "none";
+
 			searchPanelFlag = false;
 
 			let searchedWord = document.querySelector("#searchWord").value;
-			//console.log(searchedWord);
-			//document.getElementById("articles").innerHTML = `<h1>Search Results</h1>`;
+
 			document.getElementById("articles").innerHTML = "";
 			searchHeader();
 			revealSearchResults(results, searchedWord);
 		});
 }
 
-//let HeadlinesPage = document.createElement("div");
-
 function searchHeader() {
+	let searchArticle = document.getElementById("articles");
+	searchArticle.style.display = "flex";
+	searchArticle.style.flexDirection = "column";
 	let searchHead = document.createElement("div");
 	searchArticle.appendChild(searchHead);
 	let searchTitle = document.createElement("h1");
@@ -75,24 +148,24 @@ function searchHeader() {
 	searchArticle.appendChild(searchResultDiv);
 }
 
-function revealSearchResults(data, word) {
+function revealSearchResults(results, word) {
 	let searchRes = document.getElementById("searchResultDiv");
 
-	//================================
-	//let singleResultDiv = document.createElement("div");
-
-	//come back here
-
-	//console.log(data[0].summary.excerpt);
-	const articlesFound = data.filter((element) => {
-		if (
-			element.title.title.toLowerCase().includes(word.toLowerCase())
-
-			////element.summary.excerpt.toLowerCase().includes(word.toLowerCase())
-		)
-			return true;
+	results.forEach((element, index) => {
+		console.log(typeof element.title.title);
+		console.log(typeof element.summary.excerpt);
 	});
-	console.log(articlesFound.length);
+	const clearnResult = results.filter((element) => {
+		return typeof element.summary.excerpt === "string";
+	});
+	console.log(clearnResult.length);
+
+	const articlesFound = clearnResult.filter((element) => {
+		return (
+			element.summary.excerpt.toLowerCase().includes(word.toLowerCase()) ||
+			element.summary.excerpt.toLowerCase().includes(word.toLowerCase())
+		);
+	});
 
 	articlesFound.forEach((element, index) => {
 		let singleResultDiv = document.createElement("div");
@@ -124,61 +197,6 @@ function revealSearchResults(data, word) {
 
 		singleResultDiv.appendChild(lineBraker);
 	});
-	//	searchRes.appendChild(singleResultDiv);
-
-	//================================================
 }
-
-/*
-function revealSearchResults() {
-
-	results.forEach((element, index) => {
-		if (
-			element.titel.titel.toLowerCase().search(searchWord.value.toLowerCase()) >= 0 ||
-			element.summary.excerpt.toLowerCase().search(searchWord.value.toLowerCase()) >= 0
-		) {
-			console.log("searchfound");
-			//searchFoundCounter++;
-			//episodeFound.push(allEpisodes[index]);
-		}
-	});
-	if (episodeFound.length === 0) {
-		currentEpisodeHeader.innerHTML = "No result found";
-	}
-	console.log(episodeFound.length + " all Episodes length");
-	searchResult.innerHTML =
-		"Displaying " +
-		searchFoundCounter +
-		" / " +
-		totalNumberOfEpisodes +
-		" episodes ";
-
-	
-}
-*/
 
 fetchData();
-
-//console.log("test working");
-//console.log(results);
-/*
-document
-	.querySelector("#searchHeadline")
-	.addEventListener("click", function () {
-		console.log("working");
-
-		//console.log(document.querySelector("#searchHeadline").value);
-	});
-*/
-
-/*
-document
-		.getElementById("searchButton")
-		.addEventListener("click", function () {
-			let searchedWord = document.querySelector("#searchWord").value;
-			console.log(searchedWord);
-			document.getElementById(
-				"articles"
-			).innerHTML = `<div>Search Results</div>`;
-		});
-*/

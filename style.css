@@ -1,49 +1,90 @@
-
 #navb {
 	background-color: #fff1e0;
-	font-family: "Times New Roman", Times, serif;
+}
+.title {
+	text-decoration: none;
+}
+#topImg {
+	padding: 0;
+	margin: 0;
 }
 h1 {
-	font-weight: 2000;
+	color: black;
+	font-weight: bolder;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
 }
 
 #info {
+	/*
 	display: flex;
 	flex-direction: column;
 
 	background-color: #fff1e0;
 
 	padding: 10% 3% 3% 7%;
-	box-shadow: 20px 20px 10px rgb(245, 238, 238);
+	box-shadow: 20px 20px 10px rgb(245, 238, 238);*/
 }
 #articles {
 	background-color: #fff1e0;
 	display: flex;
-
-	box-shadow: 20px 20px 10px rgb(245, 238, 238);
+	flex-direction: column;
 }
 .vl {
 	border-right: 1px solid gray;
 	height: 60 vh;
 	padding: 5px 50px;
 }
+#ftHeader {
+	justify-content: center;
+	background-color: #fff1e0;
+}
 #info_img {
 	padding: 0;
 	margin: 0;
-	box-shadow: 20px 20px 10px rgb(245, 238, 238);
 }
 #topPanel {
-	background-color: rgb(44, 40, 40);
-
+	flex-direction: row;
+	justify-content: center;
+	background-color: rgb(25, 25, 37);
+	text-align: center;
 	color: #fff1e0;
+	padding: 1%;
+}
+#pub {
+	display: flex;
+}
+
+#pub-btn {
+	margin-left: 10%;
+	width: 11%;
+	height: 10%;
+	background-color: #fff1e0;
+	color: rgb(25, 25, 37);
+	font-weight: bold;
 }
 #searchIcon {
-	margin-left: 20%;
+	padding: 1.5% 4% 1% 1%;
 	cursor: pointer;
 }
 #searchPanel {
-	
 	padding: 2% 2%;
 
 	background-color: rgb(202, 197, 197);
 }
+#searchWord {
+	justify-content: center;
+	margin: 0 5% 1% 20%;
+	border: 1px thick rgb(8, 110, 8);
+	width: 80%;
+}
+#closeSearchPanel {
+	padding-right: 20%;
+}
+
+#searchButton {
+	background-color: rgb(25, 25, 37);
+	border: none;
+	margin: 0 3% 0% 0%;
+}
+/* //box-shadow: 20px 20px 10px rgb(245, 238, 238); */
