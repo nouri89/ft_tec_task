@@ -1,0 +1,76 @@
+/*const express = require("express");
+const app = express();
+const cors = require("cors");
+const fetch = require("node-fetch");
+
+app.use(cors);
+app.use(express.json());
+
+
+app.use(express.static("public"));
+
+
+let headlines = [];
+// title.title  for headlines
+
+// location.uri  for headlines url
+
+const get = async () => {
+	try {
+		const data = {
+			queryString: "",
+			resultContext: {
+				aspects: ["title", "lifecycle", "location", "summary", "editorial"],
+			},
+		};
+
+		const url = "https://api.ft.com/content/search/v1";
+
+		const response = await fetch(url, {
+			method: "POST", // *GET, POST, PUT, DELETE, etc.
+
+			headers: {
+				"Content-Type": "application/json",
+				"X-Api-Key": "59cbaf20e3e06d3565778e7b9758f7892e89468293a48663b98bd1d9",
+			},
+			body: JSON.stringify(data),
+		});
+		const num = await response.json();
+		headlines = num.results[0].results;
+		//const arr = [1,2,3]
+		//	console.log(articls);
+		//headlines = article;
+			headlines.forEach((element) => {
+			//	console.log(element);
+			});
+		//return num;
+
+		//return response;
+	} catch (error) {
+		//console.log(error);
+	}
+	
+};
+
+function loadData() {
+	return 
+}
+
+get();
+
+app.get("/", (req, res) => {
+	res.send("root")
+})
+
+app.get("/test",   (req, res) => {
+	 res.send("hello")
+});
+
+const port = process.env.PORT || 3003;
+const listener = app.listen(port, function () {
+	console.log("server is listtening to the port: " + listener.address().port);
+});
+
+//app.listen(port, () => console.log("server listening in port "+port));
+*/
+

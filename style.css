@@ -1,0 +1,49 @@
+
+#navb {
+	background-color: #fff1e0;
+	font-family: "Times New Roman", Times, serif;
+}
+h1 {
+	font-weight: 2000;
+}
+
+#info {
+	display: flex;
+	flex-direction: column;
+
+	background-color: #fff1e0;
+
+	padding: 10% 3% 3% 7%;
+	box-shadow: 20px 20px 10px rgb(245, 238, 238);
+}
+#articles {
+	background-color: #fff1e0;
+	display: flex;
+
+	box-shadow: 20px 20px 10px rgb(245, 238, 238);
+}
+.vl {
+	border-right: 1px solid gray;
+	height: 60 vh;
+	padding: 5px 50px;
+}
+#info_img {
+	padding: 0;
+	margin: 0;
+	box-shadow: 20px 20px 10px rgb(245, 238, 238);
+}
+#topPanel {
+	background-color: rgb(44, 40, 40);
+
+	color: #fff1e0;
+}
+#searchIcon {
+	margin-left: 20%;
+	cursor: pointer;
+}
+#searchPanel {
+	
+	padding: 2% 2%;
+
+	background-color: rgb(202, 197, 197);
+}
