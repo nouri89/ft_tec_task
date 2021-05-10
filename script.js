@@ -97,7 +97,7 @@ function revealSearchResults(data, word) {
 	articlesFound.forEach((element, index) => {
 		let singleResultDiv = document.createElement("div");
 		singleResultDiv.setAttribute("id", "singleResultDiv");
-		singleResultDiv.style.border = "10px solid grey";
+	
 		let resultImg = document.createElement("img");
 		resultImg.setAttribute("src", element.images[0].url);
 		resultImg.style.float = "left";
