@@ -2,11 +2,11 @@ const express = require("express");
 const fetch = require("node-fetch");
 const app = express();
 app.use(express.json());
-const path=require("path")
+const path = require("path");
 
+app.use(express.static(path.join(__dirname, "build")));
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname,"")))
-	
+	app.use(express.static(path.join(__dirname, "build")));
 }
 
 let headlines = [];
@@ -46,10 +46,7 @@ const getHeadlines = async () => {
 		const num = await response.json();
 		headlines = num.results[0].results;
 		headlines.forEach((element) => {});
-		
-	} catch (error) {
-		
-	}
+	} catch (error) {}
 };
 
 getHeadlines();
