@@ -51,6 +51,12 @@ h1 {
 	color: #fff1e0;
 	padding: 1%;
 }
+footer > img {
+	width: 100%;
+}
+#topImg {
+	width: 100%;
+}
 #pub {
 	display: flex;
 }
