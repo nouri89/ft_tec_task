@@ -1,18 +1,11 @@
 const express = require("express");
-//const cors = require("cors");
 const fetch = require("node-fetch");
 const app = express();
-//app.use(express.json());
-//
-//app.use(cors);
 app.use(express.json());
 let headlines = [];
 app.get("/getData", (req, res) => {
 	res.json(headlines);
 });
-
-// title.title  for headlines
-// location.uri  for headlines url
 
 app.get("/getCall", (req, res) => {});
 
