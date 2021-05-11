@@ -19,14 +19,21 @@ async function fetchData() {
 	titlesDev.style.display = "flex";
 	titlesDev.style.flexDirection = "column";
 	titlesDev.style.margin = "1% 10% 1% 1%";
-	//titlesDev.style.backgroundColor = "green";
 
 	mainPage.appendChild(mainDiv);
 	let mainArticle = document.createElement("h1");
+	mainArticle.setAttribute("id", "mainArticle");
+
 	mainArticle.style.fontFamily = "Times New Roman, Times, serif";
 	titlesDev.appendChild(mainArticle);
+	if (results[0].title.title === undefined) {
+		mainArticle.innerText = "Article Summary not available!";
+	} else mainArticle.innerText = results[0].title.title;
+	mainArticle.style.cursor = "pointer";
 
-	mainArticle.innerText = results[0].title.title;
+	document.getElementById("mainArticle").addEventListener("click", () => {
+		console.log("clicked");
+	});
 
 	let mainArticleSummary = document.createElement("p");
 	mainArticleSummary.style.margin = "1% 1%";
