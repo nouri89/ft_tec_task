@@ -2,6 +2,13 @@ const express = require("express");
 const fetch = require("node-fetch");
 const app = express();
 app.use(express.json());
+const path=require("path")
+
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname,"")))
+	
+}
+
 let headlines = [];
 app.get("/getData", (req, res) => {
 	res.json(headlines);
@@ -48,6 +55,7 @@ const getHeadlines = async () => {
 getHeadlines();
 
 const port = process.env.PORT || 3004;
+//process.env.NODE_ENV
 const listener = app.listen(port, function () {
 	console.log("server is listtening to the port: " + listener.address().port);
 });

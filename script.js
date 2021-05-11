@@ -1,7 +1,7 @@
 let searchPanelFlag = false;
 
 async function fetchData() {
-	const response = await fetch("http://localhost:3004/getData");
+	const response = await fetch("/getData");
 	const result = await response.json();
 	const results = result.filter((element) => {
 		return typeof element.images[0] === "object";
