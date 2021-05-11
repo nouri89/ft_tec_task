@@ -4,10 +4,12 @@ const app = express();
 app.use(express.json());
 const path = require("path");
 
+//console.log(process.env.PORT);
+/*
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "build")));
-}
-
+	////app.use(express.static(path.join(__dirname, "build")));
+}*/
+//console.log(path.join(__dirname, "public"));
 let headlines = [];
 app.get("/getData", (req, res) => {
 	res.json(headlines);
