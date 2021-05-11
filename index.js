@@ -2,8 +2,8 @@ const express = require("express");
 const fetch = require("node-fetch");
 const app = express();
 app.use(express.json());
-const path = require("path");
 
+app.use(express.static(__dirname+"/public"));
 //console.log(process.env.PORT);
 /*
 if (process.env.NODE_ENV === "production") {
@@ -12,10 +12,9 @@ if (process.env.NODE_ENV === "production") {
 //console.log(path.join(__dirname, "public"));
 let headlines = [];
 app.get("/getData", (req, res) => {
+	//console.log(headlines);
 	res.json(headlines);
 });
-
-app.get("/getCall", (req, res) => {});
 
 const getHeadlines = async () => {
 	try {
@@ -46,7 +45,6 @@ const getHeadlines = async () => {
 		});
 		const num = await response.json();
 		headlines = num.results[0].results;
-		headlines.forEach((element) => {});
 	} catch (error) {}
 };
 
