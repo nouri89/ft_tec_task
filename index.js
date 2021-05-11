@@ -1,18 +1,14 @@
 const express = require("express");
 const fetch = require("node-fetch");
+const path = require("path");
 const app = express();
 app.use(express.json());
 
-app.use(express.static(__dirname+"/public"));
-//console.log(process.env.PORT);
-/*
-if (process.env.NODE_ENV === "production") {
-	////app.use(express.static(path.join(__dirname, "build")));
-}*/
-//console.log(path.join(__dirname, "public"));
+app.use(express.static(path.join(__dirname, "public")));
+
+
 let headlines = [];
 app.get("/getData", (req, res) => {
-	//console.log(headlines);
 	res.json(headlines);
 });
 
