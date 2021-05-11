@@ -14,17 +14,14 @@ h1 {
 	text-align: center;
 	font-family: "Times New Roman", Times, serif;
 }
-
-#info {
-	/*
-	display: flex;
-	flex-direction: column;
-
-	background-color: #fff1e0;
-
-	padding: 10% 3% 3% 7%;
-	box-shadow: 20px 20px 10px rgb(245, 238, 238);*/
+#pub {
+	display: hidden;
 }
+#info > h4 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	margin: 20% 1% 1% 15%;
+}
+
 #articles {
 	background-color: #fff1e0;
 	display: flex;
